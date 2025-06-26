@@ -1,4 +1,3 @@
-
 import {
     Table,
     TableBody,
@@ -19,6 +18,10 @@ interface CompanionsListProps {
 }
 
 const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) => {
+    // Remove duplicates by id
+    const uniqueCompanions = companions?.filter((companion, index, self) =>
+        index === self.findIndex((c) => c.id === companion.id)
+    );
     return (
         <article className={cn('companion-list', classNames)}>
             <h2 className="font-bold text-3xl">{title}</h2>
@@ -32,7 +35,7 @@ const CompanionsList = ({ title, companions, classNames }: CompanionsListProps) 
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {companions?.map(({id, subject, name, topic, duration}) => (
+                    {uniqueCompanions?.map(({id, subject, name, topic, duration}) => (
                         <TableRow key={id}>
                             <TableCell>
                                 <Link href={`/companions/${id}`}>

@@ -159,7 +159,6 @@ const CompanionForm = () => {
                             <FormMessage />
                         </FormItem>
                     )}
-
                 />
                 <FormField
                     control={form.control}
